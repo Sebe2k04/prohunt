@@ -47,7 +47,7 @@ export default function Home() {
           Showcase Who You Are?
         </Link>
       </div>
-      <WorldMapDemo />
+      {/* <WorldMapDemo /> */}
       {/*  */}
       {/* <h1 className="text-center text-sm pt-20">Developed uisng emerging technologies</h1>
       <div className="pt-5 flex justify-center">
