@@ -18,13 +18,13 @@ const Navbar = () => {
           <Link href={"/"} className="text-lg font-bold pr-2">Pro<span className="text-green-600">Hunt</span></Link>
           <h1 className="border-green-600 border px-2 bg-green-700 dark:bg-green-900 rounded-full text-white">Beta</h1>
         </div>
-        <div className="flex items-center gap-7  text-sm font-semibold">
+        <div className="lg:flex hidden items-center gap-7  text-sm font-semibold">
           <Link href={"/"} className="dark:hover:text-white hover:text-black duration-100">About</Link>
           <Link href={"/"} className="dark:hover:text-white hover:text-black duration-100">Products</Link>
           <Link href={"/"} className="dark:hover:text-white hover:text-black duration-100">Developers</Link>
           <Link href={"/"} className="dark:hover:text-white hover:text-black duration-100">Support</Link>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="lg:flex hidden items-center gap-5">
           <ThemeToggle />
           <Link
             href={"/login"}
