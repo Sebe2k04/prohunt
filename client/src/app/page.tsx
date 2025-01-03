@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { FaArrowRight } from "react-icons/fa";
@@ -26,13 +25,13 @@ const pc = [
   },
 ];
 
-const quotes: String[] = [
-  "Innovation",
-  "Collaboration",
-  "Development",
-  "Community",
-  "Technology",
-];
+// const quotes: String[] = [
+//   "Innovation",
+//   "Collaboration",
+//   "Development",
+//   "Community",
+//   "Technology",
+// ];
 export default function Home() {
   return (
     <div className="min-h-[100vh] z-10 pt-10 px-8 lg:px-20">
