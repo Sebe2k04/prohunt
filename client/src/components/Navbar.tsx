@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="lg:flex hidden items-center gap-5">
           <ThemeToggle />
           <Link
-            href={"/login"}
+            href={"/auth/login"}
             className="px-4 py-0.5 pb-1 bg-gradient-to-br from-green-500 via-green-700 to-green-800 font-semibold rounded-lg border-green-400 text-white"
           >
             Login

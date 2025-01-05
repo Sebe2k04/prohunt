@@ -76,7 +76,7 @@ export default function Home() {
           Showcase Who You Are?
         </Link>
       </div>
-      <h1 className="text-center text-sm pt-5">
+      <h1 className="text-center text-sm pt-5 text-zinc-600">
         Trusted by 10,000+ Developers - Innovators
       </h1>
 
