@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <div className="min-h-[100vh] z-10 pt-10 px-8 lg:px-20">
       <div className="flex justify-center text-[12px]">
-        <div className=" flex gap-2 dark:shadow-lg border border-green-800  dark:shadow-gray-800 shadow-green-800 items-center dark:border-t dark:border-gray-800 p-1.5 pr-3 rounded-full">
+        <div className=" flex gap-2 dark:shadow-md border border-green-800  dark:shadow-gray-800/50 shadow-green-800 items-center dark:border-t dark:border-gray-900 p-1.5 pr-3 rounded-full">
           <div className="px-3 py-1 bg-green-900/70 text-white dark:text-inherit border rounded-full border-green-800 ">
             Launch v1.0
           </div>

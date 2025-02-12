@@ -7,12 +7,12 @@ import { toast } from "react-toastify";
 
 export default function Page() {
   const router = useRouter();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<true | false>(false);
-  const [isValid, setIsValid] = useState<true | false>(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
-  const handlePassword = (value:string) => {
+  const handlePassword = (value) => {
     // const value = e.target.value;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
     setPassword(value);
@@ -24,7 +24,7 @@ export default function Page() {
       setIsValid(false);
     }
   };
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await toast.promise(signup(email, password), {
