@@ -25,6 +25,7 @@ export default function Page() {
         error: "Error",
       });
       console.log(res);
+      router.push("/secure/dashboard")
     } catch (error) {
       console.log(error);
     }

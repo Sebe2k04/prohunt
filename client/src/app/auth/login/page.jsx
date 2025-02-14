@@ -15,10 +15,10 @@ export default function Page() {
       const res = await toast.promise(login(email, password), {
         pending: "Authenticating",
         success: "Authenticated",
-        error: "Error",
+        error: "Invalid credentials",
       });
-      console.log(res);
       router.push("/secure/dashboard");
+      console.log(res);
     } catch (error) {
       console.log(error);
     }

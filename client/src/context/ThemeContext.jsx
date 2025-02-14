@@ -7,15 +7,11 @@ import {
   useEffect,
 } from "react";
 
-interface ThemeContextProps {
-  theme: "light" | "dark";
-  toggleTheme: () => void;
-}
 
-const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState("dark");
 
   //   const toggleTheme = () => {
   //     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -23,7 +19,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   //   };
   console.log(theme)
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setTheme(savedTheme);
       document.documentElement.classList.toggle("dark", savedTheme === "dark");
@@ -34,7 +30,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    document.documentElement.classList.toggle("dark", newTheme == "dark");
   };
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

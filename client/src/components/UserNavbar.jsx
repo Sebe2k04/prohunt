@@ -6,7 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 const UserNavbar = () => {
   return (
     <div className="">
-      <div className="fixed z-[100] w-full border-b dark:bg-[#121212]  dark:border-gray-900 flex items-center justify-between">
+      <div className="fixed z-[100] w-full border-b dark:bg-[#121212] bg-white dark:border-gray-900 flex items-center justify-between">
         <div className="flex items-center lg:w-[250px] pl-8 border-r dark:border-gray-900 py-1">
           <Image
             src="/logo.png"
@@ -22,7 +22,7 @@ const UserNavbar = () => {
             Beta
           </h1>
         </div>
-        <div className="flex gap-5 items-center text-sm pr-8">
+        <div className="lg:flex hidden gap-5 items-center text-sm pr-8">
           {/* <div className="flex gap-2 items-center">
             <h1>Theme : </h1>
             <ThemeToggle/>
@@ -44,7 +44,7 @@ const UserNavbar = () => {
           {/* <div className="w-7 h-7 rounded-full bg-green-500"></div> */}
         </div>
       </div>
-      <div className="lg:w-[250px] pt-[50px] h-screen overflow-y-scroll no-scrollbar border-r  dark:border-gray-900 ">
+      <div className="lg:w-[250px] pt-[50px] h-screen overflow-y-scroll no-scrollbar border-r lg:flex hidden dark:border-gray-900 ">
         <div className="grid gap-5 divide-y dark:divide-gray-900 px-5">
           <div className="pt-3 text-sm grid gap-3">
             <h1 className="dark:text-gray-800 text-gray-500">
@@ -153,7 +153,7 @@ const UserNavbar = () => {
               Settings
             </Link>
             <Link
-              href={""}
+              href={"/secure/profile"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Profile

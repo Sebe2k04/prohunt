@@ -7,8 +7,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }: {children: React.ReactNode}) => {
-  const [user, setUser] = useState<any>(null);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const path = usePathname();
@@ -20,11 +20,9 @@ export const AuthProvider = ({ children }: {children: React.ReactNode}) => {
       if (session?.user) {
         setUser(session.user);
         console.log(session.user);
-
-        // Fetch user's role from Supabase
         if (path.startsWith("/admin")) {
           const { data, error } = await supabase
-            .from("admin") // Replace with your table name
+            .from("admin")
             .select("*")
             .eq("admin_id", session.user.id)
             .single();
@@ -38,8 +36,6 @@ export const AuthProvider = ({ children }: {children: React.ReactNode}) => {
       }
       setLoading(false);
     };
-
-    // Listen for auth state changes
     const { data: subscription } = supabase.auth.onAuthStateChange(() => {
       checkSession();
     });
