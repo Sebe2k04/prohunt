@@ -467,9 +467,9 @@ export default function Page() {
                         placeholder="Search domains..."
                       />
                       <div className="hidden md:flex"></div>
-                      {domainQuery && filteredDomainSuggestions.length > 0 && (
+                      {domainQuery && filteredProjectDomainSuggestions.length > 0 && (
                         <div className="max-h-[400px] overflow-y-scroll no-scrollbar border border-green-400 rounded-xl">
-                          {filteredDomainSuggestions.map((item) => (
+                          {filteredProjectDomainSuggestions.map((item) => (
                             <div
                               key={item}
                               className="flex items-center justify-between gap-2 p-2 cursor-pointer hover:bg-green-200 hover:dark:bg-green-900 rounded-lg"
