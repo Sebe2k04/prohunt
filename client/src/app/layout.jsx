@@ -18,10 +18,10 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
-      <body className={` ${inter} vsc-initialized antialiased inter `}>
+      <body className={` ${inter} vsc-initialized antialiased inter dark:bg-[#121212] min-h-[100vh] dark:text-gray-400 text-gray-700`}>
         <ThemeProvider>
           <AuthProvider>
-          <div className="dark:bg-[#121212] min-h-[100vh] dark:text-gray-400 text-gray-700  ">
+          <div className="  ">
             <NavbarHandler />
             {children}
           </div>
