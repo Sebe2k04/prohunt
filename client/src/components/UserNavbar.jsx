@@ -99,19 +99,19 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={""}
+              href={"/secure/portfolio/templates"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Templates
             </Link>
             <Link
-              href={""}
+              href={"/secure/portfolio"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               My Portfolio
             </Link>
             <Link
-              href={""}
+              href={"/secure/integrations"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Integrations
@@ -123,19 +123,19 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={""}
+              href={"/secure/interactions"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Recent Interactions
             </Link>
             <Link
-              href={""}
+              href={"/secure/preferences"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Account Preferences
             </Link>
             <Link
-              href={""}
+              href={"/secure/activity"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Profile Activity
@@ -147,7 +147,7 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={""}
+              href={"/secure/settings"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Settings
