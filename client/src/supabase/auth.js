@@ -9,6 +9,16 @@ export const login = async (email, password) => {
   return data;
 };
 
+export const googleLogin  = async() => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google"
+
+  })
+  if (error) throw error;
+  return data;
+  
+}
+
 export const sendOtp = async (email) => {
   const { data, error } = await supabase.auth.signInWithOtp({ email });
   if (error) {

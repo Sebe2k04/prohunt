@@ -1,5 +1,5 @@
 "use client";
-import { login } from "@/supabase/auth";
+import { googleLogin, login } from "@/supabase/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -23,6 +23,22 @@ export default function Page() {
       console.log(error);
     }
   };
+
+
+  const handleGoogle = async(e)=>{
+    e.preventDefault();
+    try {
+      const res = await toast.promise(googleLogin(), {
+        pending: "Authenticating",
+        success: "Authenticated",
+        error: "Invalid credentials",
+      });
+      router.push("/secure/dashboard");
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="min-h-[100vh]">
       <div className="pt-10 flex justify-center">
@@ -100,6 +116,9 @@ export default function Page() {
                 </span>{" "}
                 Account
               </Link>
+              <div onClick={handleGoogle} className="py-5 cursor-pointer">
+                <h1 className="hover:underline underline-offset-2 duration-200 text-green-400">Login with Google</h1>
+              </div>
             </div>
           </div>
         </div>

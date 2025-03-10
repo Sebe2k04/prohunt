@@ -14,7 +14,6 @@ def recommend_users_for_project(users, project_id, domain):
     Returns:
     - List of users with 'collaborative_based' score added.
     """
-    # Flatten the data to have user_id, project_id, and domain for each completed project
     data = []
     for user in users:
         for project in user['completed_projects']:
