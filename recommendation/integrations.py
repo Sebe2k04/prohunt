@@ -1,85 +1,60 @@
 from flask import Flask, request, jsonify
+from bs4 import BeautifulSoup
 from flask_cors import CORS
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import requests
 
 app = Flask(__name__)
 CORS(app)
 
-def scrape_github_data(username):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920x1080")
+# Function to scrape GitHub data
+def fetch_github_data(user_name):
+    response = requests.get(f"https://github.com/{user_name}")
+    soup = BeautifulSoup(response.text, "html.parser")
+    all_datas = soup.find_all("span", class_="Counter")
+    repo = all_datas[0].text.strip() if all_datas else "0"
+    stars = all_datas[3].text.strip() if len(all_datas) > 3 else "0"
+    return {"platform": "GitHub", "username": user_name, "repositories": repo, "stars": stars}
 
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.get(f"https://github.com/{username}")
+# Function to scrape LeetCode data
+def fetch_leetcode_data(user_name):
+    response = requests.get(f"https://leetcode.com/{user_name}")
+    soup = BeautifulSoup(response.text, "html.parser")
+    problems_solved = soup.find("span", class_="text-[24px]").text.strip() if soup.find("span", class_="text-[24px]") else "0"
+    return {"platform": "LeetCode", "username": user_name, "problems_solved": problems_solved}
 
-    wait = WebDriverWait(driver, 10)
+# Function to scrape HackerRank data
+def fetch_hackerrank_data(user_name):
+    response = requests.get(f"https://www.hackerrank.com/{user_name}")
+    soup = BeautifulSoup(response.text, "html.parser")
+    badges = len(soup.find_all("div", class_="badge-card")) if soup.find_all("div", class_="badge-card") else "0"
+    return {"platform": "HackerRank", "username": user_name, "badges": badges}
 
-    # Get total repositories count
-    try:
-        repo_count = wait.until(EC.presence_of_element_located((By.XPATH, "//a[contains(@href, '?tab=repositories')]/span"))).text
-    except:
-        repo_count = "Unknown"
+# Function to scrape LinkedIn data
+def fetch_linkedin_data(user_name):
+    # LinkedIn restricts scraping without authentication — Placeholder for demo purposes
+    return {"platform": "LinkedIn", "username": user_name, "status": "LinkedIn scraping requires authentication"}
 
-    # Get contributions chart
-    try:
-        contribution_cells = driver.find_elements(By.XPATH, "//td[contains(@class, 'ContributionCalendar-day')]")
-        contributions = [cell.get_attribute("data-count") or "0" for cell in contribution_cells]
-    except:
-        contributions = []
+@app.route('/integrate/<platform>', methods=['POST'])
+def integrate(platform):
+    data = request.json
+    user_name = data.get('username')
 
-    # Get repositories and their data
-    driver.get(f"https://github.com/{username}?tab=repositories")
-
-    try:
-        repo_elements = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//h3[@class='wb-break-all']/a")))
-        repositories = [repo.text for repo in repo_elements]
-    except:
-        repositories = []
-
-    repo_data = {}
-    for repo in repositories:
-        driver.get(f"https://github.com/{username}/{repo}")
-
-        try:
-            recent_commit = wait.until(EC.presence_of_element_located((By.XPATH, "//relative-time"))).get_attribute("datetime")
-        except:
-            recent_commit = "No commits found"
-
-        try:
-            total_commits = driver.find_element(By.XPATH, "//span[@class='d-none d-sm-inline']/strong").text
-        except:
-            total_commits = "Unknown"
-
-        repo_data[repo] = {
-            "Recent Commit": recent_commit,
-            "Total Commits": total_commits
-        }
-
-    driver.quit()
-    
-    return {
-        "username": username,
-        "total_repos": repo_count,
-        "contributions_chart": contributions,
-        "repositories": repo_data
-    }
-
-@app.route('/integrate/github', methods=['POST'])
-def integrate_github():
-    data = request.get_json()
-    username = data.get('username')
-
-    if not username:
+    if not user_name:
         return jsonify({"error": "Username is required"}), 400
 
-    github_data = scrape_github_data(username)
-    return jsonify(github_data)
+    platform = platform.lower()
+    if platform == "github":
+        result = fetch_github_data(user_name)
+    elif platform == "leetcode":
+        result = fetch_leetcode_data(user_name)
+    elif platform == "hackerrank":
+        result = fetch_hackerrank_data(user_name)
+    elif platform == "linkedin":
+        result = fetch_linkedin_data(user_name)
+    else:
+        result = {"error": "Platform not supported"}
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    return jsonify(result)
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
