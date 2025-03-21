@@ -15,21 +15,82 @@ SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Function to scrape GitHub data
-def fetch_github_data(user_name):
-    response = requests.get(f"https://github.com/{user_name}")
-    soup = BeautifulSoup(response.text, "html.parser")
-    all_datas = soup.find_all("span", class_="Counter")
-    repo = all_datas[0].text.strip() if all_datas else "0"
-    stars = all_datas[3].text.strip() if len(all_datas) > 3 else "0"
-    return {"repositories": repo, "stars": stars}
+import requests
+from bs4 import BeautifulSoup
 
+def fetch_github_data(user_name):
+    try:
+        # Fetch the GitHub profile page
+        response = requests.get(f"https://github.com/{user_name}")
+        response.raise_for_status()  # Raise an error for bad status codes
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        # Extract the username
+        username_element = soup.find("span", class_="p-nickname vcard-username d-block")
+        username = username_element.text.strip() if username_element else "Not Found"
+
+        # Extract repository and stars data
+        all_datas = soup.find_all("span", class_="Counter")
+        repo = all_datas[0].text.strip() if all_datas else "0"
+        stars = all_datas[3].text.strip() if len(all_datas) > 3 else "0"
+
+        # Extract followers and following from the specified XPath
+        # Convert XPath to BeautifulSoup selectors
+        xpath_section = soup.select("body > div.application-main > main > div > div > div.Layout-main > div > div > div.Layout-sidebar > div > div > div.js-profile-editable-replace > div > div")
+        followers = "0"
+        following = "0"
+
+        if xpath_section:
+            # Find all <span> tags within the XPath section
+            spans = xpath_section[0].find_all("span")
+            if len(spans) >= 2:
+                followers = spans[0].text.strip()  # First <span> contains followers
+                following = spans[1].text.strip()  # Second <span> contains following
+
+        return {
+            "username": user_name,
+            "repositories": repo,
+            "stars": stars,
+            "followers": followers,
+            "following": following
+        }
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching GitHub data for {user_name}: {str(e)}")
+        return {
+            "username": "Error",
+            "repositories": "0",
+            "stars": "0",
+            "followers": "0",
+            "following": "0"
+        }
+    
 # Function to scrape LeetCode data
 def fetch_leetcode_data(user_name):
-    response = requests.get(f"https://leetcode.com/{user_name}")
-    soup = BeautifulSoup(response.text, "html.parser")
-    problems_solved = soup.find("span", class_="text-[24px]").text.strip() if soup.find("span", class_="text-[24px]") else "0"
-    return {"problems_solved": problems_solved}
+    try:
+        # Fetch data from the LeetCode stats API
+        url = f"https://leetcode-stats-api.herokuapp.com/{user_name}"
+        response = requests.get(url)
 
+        # Check if the request was successful
+        if response.status_code == 200:
+            data = response.json()
+
+            # Extract relevant data
+            result = {
+                "username": user_name,
+                "total_solved": str(data.get("totalSolved", "0")) + "/" + str(data.get("totalQuestions", "0")),
+                "acceptance_rate": str(data.get("acceptanceRate", "0")),
+                "ranking": str(data.get("ranking", "0")),
+                "contribution_points": str(data.get("contributionPoints", "0")),
+            }
+            return result
+        else:
+            print(f"Failed to fetch LeetCode data for {user_name}: {response.status_code}")
+            return {"error": "Failed to fetch LeetCode data"}
+    except Exception as e:
+        print(f"Error fetching LeetCode data for {user_name}: {str(e)}")
+        return {"error": str(e)}
 # Function to scrape HackerRank data
 def fetch_hackerrank_data(user_name):
     response = requests.get(f"https://www.hackerrank.com/{user_name}")

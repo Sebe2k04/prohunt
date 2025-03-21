@@ -1,9 +1,12 @@
 "use client";
 import IntegrationsHandler from "@/components/IntegrationsHandler";
+import ShowIntegrations from "@/components/ShowIntegrations";
 import { useState } from "react";
+import { PlusIcon } from "@heroicons/react/24/solid"; 
 
 export default function Page() {
   const [showModal, setShowModal] = useState(false);
+  const [hasIntegrations, setHasIntegrations] = useState(0); 
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center space-y-6 p-8 relative">
@@ -17,12 +20,27 @@ export default function Page() {
       </div>
 
       <button
-        className="bg-gray-900 text-green-900 p-4 rounded-full flex items-center justify-center"
+        className="absolute top-5 right-20 bg-gray-900 text-green-400 p-4 rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
         onClick={() => setShowModal(true)}
       >
-        add
+        <PlusIcon className="h-6 w-6" /> 
       </button>
-      <p className="text-md text-gray-600 mt-2">Click the add button to interlink with multiple platforms.</p>
+
+      <ShowIntegrations setHasIntegrations={setHasIntegrations} />
+
+      {hasIntegrations === 0 && (
+        <div className="w-full max-w-2xl space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[...Array(4)].map((_, index) => (
+              <div key={index} className="p-4 border border-gray-800 rounded-lg bg-gray-900">
+                <div className="h-6 bg-gray-700 rounded w-1/2 mb-2"></div>
+                <div className="h-4 bg-gray-700 rounded w-full mb-1"></div>
+                <div className="h-4 bg-gray-700 rounded w-3/4"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {showModal && <IntegrationsHandler onClose={() => setShowModal(false)} />}
     </div>

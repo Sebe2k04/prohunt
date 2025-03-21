@@ -2,7 +2,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 import { useAuth } from "@/context/AuthProvider";
 
 export default function IntegrationsHandler({ onClose }) {
@@ -11,7 +10,7 @@ export default function IntegrationsHandler({ onClose }) {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const platforms = ["LeetCode", "GitHub", "CodeForces", "HackerRank"];
+  const platforms = ["LeetCode", "GitHub", "LinkedIn", "HackerRank"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +51,7 @@ export default function IntegrationsHandler({ onClose }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black bg-opacity-50 fixed inset-0">
       <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-96 text-center">
-        <h2 className="text-3xl font-bold text-white">Integrate Platform</h2>
+        <h2 className="text-3xl font-bold text-white mb-2 ">Integrate Platform</h2>
         <p className="text-sm text-gray-400">Connect your profile to Prohunt</p>
         <div className="grid grid-cols-2 gap-4 my-4">
           {platforms.map((platform) => (
