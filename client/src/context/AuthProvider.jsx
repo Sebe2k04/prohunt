@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
       if (session?.user) {
         setUser(session.user);
         console.log(session.user);
+        console.log(session.user.id);
         if (path.startsWith("/admin")) {
           const { data, error } = await supabase
             .from("admin")
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading,isAdmin }}>
+    <AuthContext.Provider value={{ user, userId: user?.id, loading,isAdmin }}>
       {children}
     </AuthContext.Provider>
   );
