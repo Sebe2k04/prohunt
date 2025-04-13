@@ -449,6 +449,7 @@ export default function Page() {
                       className="bg-inherit w-full  border-green-700 border rounded-md py-1 px-5 placeholder-gray-400 dark:placeholder-white/20"
                     />
                   </div>
+                  
                   <div className="grid gap-2 md:col-span-2">
                     <label htmlFor="">Project Domain - Select One</label>
                     <div className="px-3 py-0.5 border gap-5 rounded-md border-green-700 w-fit">
@@ -467,7 +468,7 @@ export default function Page() {
                         placeholder="Search domains..."
                       />
                       <div className="hidden md:flex"></div>
-                      {domainQuery &&
+                      {projectDomainQuery &&
                         filteredProjectDomainSuggestions.length > 0 && (
                           <div className="max-h-[400px] overflow-y-scroll no-scrollbar border border-green-400 rounded-xl">
                             {filteredProjectDomainSuggestions.map((item) => (

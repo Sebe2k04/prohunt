@@ -25,16 +25,10 @@ const pc = [
   },
 ];
 
-// const quotes: String[] = [
-//   "Innovation",
-//   "Collaboration",
-//   "Development",
-//   "Community",
-//   "Technology",
-// ];
+
 export default function Home() {
   return (
-    <div className="min-h-[100vh] z-10 pt-10 px-8 lg:px-20">
+    <div className="min-h-[100vh] z-10 pt-20 px-8 lg:px-20">
       <div className="flex justify-center text-[12px]">
         <div className=" flex gap-2 dark:shadow-md border border-green-800  dark:shadow-gray-800/50 shadow-green-800 items-center dark:border-t dark:border-gray-900 p-1.5 pr-3 rounded-full">
           <div className="px-3 py-1 bg-green-900/70 text-white dark:text-inherit border rounded-full border-green-800 ">
@@ -80,22 +74,9 @@ export default function Home() {
         Trusted by 10,000+ Developers - Innovators
       </h1>
 
-      {/* <WorldMapDemo /> */}
-      {/*  */}
+   
       <h1 className="text-center text-sm pt-20">Powered by</h1>
-      {/* <div className="flex justify-center pt-5">
-        {pc.map((c, i) => {
-          return (
-            <div
-              key={i}
-              className="flex items-center text-xl text-gray-600 px-5 gap-2"
-            >
-              <div className="">{c.icon}</div>
-              <h1 className="font-semibold">{c.name}</h1>
-            </div>
-          );
-        })}
-      </div> */}
+
       <section className=" overflow-hidden w-full pb-14 pt-5 text-center py-5 lg:px-20">
         <div className="flex ">
           
