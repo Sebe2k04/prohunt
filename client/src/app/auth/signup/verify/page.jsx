@@ -1,33 +1,48 @@
 "use client";
 
 import { verifyOtp } from "@/supabase/auth";
+import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Page() {
+  const router = useRouter();
   const [otp, setOtp] = useState("");
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
+  const [isVerifying, setIsVerifying] = useState(false);
+
   useEffect(() => {
-    const emailParam= searchParams.get("email");
+    const emailParam = searchParams.get("email");
     if (emailParam !== null) {
       setEmail(emailParam);
+    } else {
+      router.push("/auth/signup");
     }
-  }, [searchParams]);
+  }, [searchParams, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!otp || !email) {
+      toast.error("Please enter the OTP and ensure email is present");
+      return;
+    }
+
+    setIsVerifying(true);
     try {
       const res = await toast.promise(verifyOtp(email, otp), {
-        pending: "Pending",
-        success: "Created",
-        error: "Error",
+        pending: "Verifying...",
+        success: "Email verified successfully!",
+        error: "Invalid OTP. Please try again.",
       });
       console.log(res);
-      router.push("/secure/dashboard")
+      router.push("/secure/dashboard");
     } catch (error) {
-      console.log(error);
+      console.error("Verification error:", error);
+      toast.error(error.message || "Verification failed. Please try again.");
+    } finally {
+      setIsVerifying(false);
     }
   };
   return (

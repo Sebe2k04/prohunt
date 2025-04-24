@@ -1,57 +1,68 @@
 // lib/AuthContext.js
 "use client"; // Required for App Router
 
-import { supabase } from "@/lib/supabase";
-import { usePathname } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
-const AuthContext = createContext();
+const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const path = usePathname();
-  useEffect(() => {
-    const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (session?.user) {
-        setUser(session.user);
-        console.log(session.user);
-        console.log(session.user.id);
-        if (path.startsWith("/admin")) {
-          const { data, error } = await supabase
-            .from("admin")
-            .select("*")
-            .eq("admin_id", session.user.id)
-            .single();
 
-          if (data) setIsAdmin(true);
-          if (error) console.log("Error fetching role:", error.message);
+  useEffect(() => {
+    const initializeAuth = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('Error fetching session:', error);
+          setLoading(false);
+          return;
         }
-      } else {
-        setUser(null);
-        console.log("no user");
+
+        if (session?.user) {
+          setUser(session.user);
+        }
+      } catch (error) {
+        console.error('Unexpected error during auth initialization:', error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
-    const { data: subscription } = supabase.auth.onAuthStateChange(() => {
-      checkSession();
+
+    initializeAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'SIGNED_IN' && session?.user) {
+        setUser(session.user);
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+      }
     });
 
-    checkSession();
-
-    return () => subscription?.unsubscribe();
-
+    return () => {
+      subscription?.unsubscribe();
+    };
   }, []);
 
+  const value = {
+    user,
+    loading,
+    signOut: () => supabase.auth.signOut()
+  };
+
   return (
-    <AuthContext.Provider value={{ user, userId: user?.id, loading,isAdmin }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

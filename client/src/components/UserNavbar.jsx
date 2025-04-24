@@ -51,13 +51,13 @@ const UserNavbar = () => {
               Dashboard
             </h1>
             <Link
-              href={""}
+              href={"/secure/dashboard"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               User Dashboard
             </Link>
             <Link
-              href={""}
+              href={"/secure/project"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
                 Project Management
@@ -69,7 +69,7 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={""}
+              href={"/"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               All Projects

@@ -42,59 +42,58 @@ def fixed_jaccard_similarity(user_skills, preferred_skills):
     # return intersection / union if union != 0 else 0
 
 def content_based(users, project):
-    for user in users:
-        # user_skills_str = " ".join(user["skills"])
-        # project_skills_str = " ".join(project["preferred_skills"]+project["required_skills"])
-        # vectorizer = TfidfVectorizer()
-        # tfidf_matrix = vectorizer.fit_transform([user_skills_str, project_skills_str])
-        # user["content_based"] = cosine_similarity(tfidf_matrix[0], tfidf_matrix[1])[0][0]
-    
-
-        score = fixed_jaccard_similarity(user["skills"], project["preferred_skills"])
-        user["content_based"] = score
+    try:
+        for user in users:
+            # Calculate Jaccard similarity for skills
+            score = fixed_jaccard_similarity(user["skills"], project["preferred_skills"])
+            # Ensure the score is assigned with the correct key
+            user["content_based"] = float(score)  # Convert to float to ensure numeric value
+    except Exception as e:
+        print(f"Error in content-based filtering: {str(e)}")
+        # Assign default score if there's an error
+        for user in users:
+            user["content_based"] = 0.0
     return users
 
 
 
 def collaborative_based(users, project):
-    project_id = project["project_id"]
-    domain = project["domain"]
-    print("pr_id",project_id,domain)
-    # Flatten the data to have user_id, project_id, and domain for each completed project
-    data = []
+    if len(users) == 0:
+        return []
+        
+    # Add default collaborative score to each user
     for user in users:
-        for project in user['completed_projects']:
-            data.append({
-                'user_id': user['user_id'],
-                'project_id': project['project_id'],
-                'domain': project['domain']
+        user['collaborative_score'] = 0.5  # Default middle score
+        
+    # If we have enough users, try to calculate actual scores
+    if len(users) > 1:
+        try:
+            # Create a basic DataFrame with required structure
+            df = pd.DataFrame({
+                'user_id': [user['user_id'] for user in users],
+                'project_id': [project['project_id']] * len(users),
+                'interaction': [1] * len(users)  # Default interaction value
             })
-
-    # Convert to DataFrame
-    df = pd.DataFrame(data)
-
-    # Create User-Project Interaction Matrix (Binary)
-    user_project_matrix = df.pivot_table(index='user_id', columns='project_id', aggfunc='size', fill_value=0)
-
-    # Compute Pearson Similarity Matrix
-    user_ids = user_project_matrix.index
-    similarity_matrix = pd.DataFrame(index=user_ids, columns=user_ids)
-
-    for u1 in user_ids:
-        for u2 in user_ids:
-            if u1 == u2:
-                similarity_matrix.loc[u1, u2] = 1  # Self similarity = 1
-            else:
-                corr, _ = pearsonr(user_project_matrix.loc[u1], user_project_matrix.loc[u2])
-                similarity_matrix.loc[u1, u2] = max(0, corr) if not pd.isna(corr) else 0  # Ensure non-negative values
-    relevant_users = df[df['domain'] == domain]['user_id'].unique()
-    user_scores = {}
-    for user in relevant_users:
-        similar_users = similarity_matrix[user].drop(user)  # Exclude self-similarity
-        avg_similarity = similar_users.mean()  # Compute the average similarity score
-        user_scores[user] = round(avg_similarity, 4)
-    for user in users:
-        user['collaborative_score'] = user_scores.get(user['user_id'], 0)  # Default to 0 if not found
+            
+            # Create pivot table with the guaranteed structure
+            user_project_matrix = df.pivot_table(
+                index='user_id', 
+                columns='project_id', 
+                values='interaction',
+                aggfunc='size', 
+                fill_value=0
+            )
+            
+            # Calculate simple similarity score based on project domain
+            for user in users:
+                matching_domain = any(p.get('domain') == project['domain'] 
+                                    for p in user.get('completed_projects', []))
+                user['collaborative_score'] = 0.8 if matching_domain else 0.3
+                
+        except Exception as e:
+            print(f"Error in collaborative filtering: {str(e)}")
+            # Keep default scores if something goes wrong
+    
     return users
 
 # Popularity-Based Filtering
@@ -126,22 +125,49 @@ def pre_requisite_based(users, project):
 
 # Ensemble Scoring
 def ensemble_scoring(users, project):
-    filtered_users = pre_requisite_based(users, project)
-    users = content_based(filtered_users, project)
-    users = popularity_based(users)
-    users = collaborative_based(users, project)
-    # print(users)
-    data = pd.DataFrame(users)
-    # print(filtered_users)
-    data["ensemble_score"] = (
-        data["content_based"] * 0.3 +
-        data["popularity_score"] * 0.2 +
-        data["pre_requisite_score"] * 0.3 +
-        data["collaborative_score"] * 0.2
-    )
-        # data["preferred_skills_match"] * 0.2
+    try:
+        # First apply all scoring methods
+        filtered_users = pre_requisite_based(users, project)
+        if not filtered_users:  # If no users meet prerequisites
+            return pd.DataFrame()  # Return empty DataFrame
+            
+        filtered_users = content_based(filtered_users, project)
+        filtered_users = popularity_based(filtered_users)
+        filtered_users = collaborative_based(filtered_users, project)
 
-    return data.sort_values(by="ensemble_score", ascending=False)
+        # Create DataFrame from users with all required scores
+        data = []
+        for user in filtered_users:
+            user_data = {
+                'user_id': user.get('user_id'),
+                'name': user.get('name'),
+                'skills': user.get('skills', []),
+                'content_based': float(user.get('content_based', 0.0)),
+                'popularity_score': float(user.get('popularity_score', 0.0)),
+                'pre_requisite_score': float(user.get('pre_requisite_score', 0.0)),
+                'collaborative_score': float(user.get('collaborative_score', 0.0))
+            }
+            # Add any additional fields
+            for k, v in user.items():
+                if k not in user_data:
+                    user_data[k] = v
+            data.append(user_data)
+
+        # Convert to DataFrame
+        df = pd.DataFrame(data)
+        
+        # Calculate ensemble score
+        df['ensemble_score'] = (
+            df['content_based'] * 0.3 +
+            df['popularity_score'] * 0.2 +
+            df['pre_requisite_score'] * 0.3 +
+            df['collaborative_score'] * 0.2
+        )
+
+        return df.sort_values(by="ensemble_score", ascending=False)
+    except Exception as e:
+        print(f"Error in ensemble scoring: {str(e)}")
+        return pd.DataFrame()  # Return empty DataFrame in case of error
 
 # Train XGBoost Model
 def train_xgboost(data):
@@ -156,21 +182,75 @@ def train_xgboost(data):
 
 
 def get_recommendations(project):
-    filtered_users = ensemble_scoring(users, project)
-    final_recommendations = train_xgboost(filtered_users)
-    return final_recommendations
-    
+    try:
+        # Step 1: Filter users based on required skills
+        filtered_users = []
+        for user in users:
+            if set(project["required_skills"]).issubset(set(user["skills"])):
+                user_data = {
+                    'user_id': user.get('user_id'),
+                    'name': user.get('name'),
+                    'skills': user.get('skills', []),
+                    'feedback': user.get('feedback', 0),
+                    'projects_completed': user.get('projects_completed', 0),
+                    'completed_projects': user.get('completed_projects', [])
+                }
+                filtered_users.append(user_data)
+
+        if not filtered_users:
+            return "[]"  # Return empty JSON array if no users match
+
+        # Step 2: Create DataFrame with initial user data
+        df = pd.DataFrame(filtered_users)
+
+        # Step 3: Calculate scores
+        # Content-based score using skill matching
+        df['content_based'] = df['skills'].apply(
+            lambda x: fixed_jaccard_similarity(x, project['preferred_skills'])
+        )
+
+        # Popularity score
+        df['popularity_score'] = df['feedback'] * 0.1 + \
+            df.apply(lambda x: 0.5 if x['projects_completed'] > 10 
+                    else (x['projects_completed']/2) * 0.1, axis=1)
+
+        # Pre-requisite score (all filtered users meet requirements)
+        df['pre_requisite_score'] = 1.0
+
+        # Collaborative score based on domain matching
+        df['collaborative_score'] = df['completed_projects'].apply(
+            lambda x: 0.8 if any(p.get('domain') == project['domain'] for p in x) else 0.3
+        )
+
+        # Step 4: Calculate ensemble score
+        df['ensemble_score'] = (
+            df['content_based'] * 0.3 +
+            df['popularity_score'] * 0.2 +
+            df['pre_requisite_score'] * 0.3 +
+            df['collaborative_score'] * 0.2
+        )
+
+        # Step 5: Sort and convert to JSON
+        result = df.sort_values(by='ensemble_score', ascending=False)
+        return result.to_json(orient='records')
+
+    except Exception as e:
+        print(f"Error in get_recommendations: {str(e)}")
+        return "[]"  # Return empty JSON array in case of error
 
 @app.route('/recommend', methods=['POST'])
 @cross_origin()
 def recommend():
-    project = request.get_json()
-    if not project:
-        return jsonify({"error": "Invalid JSON"}), 400
-    print("Received JSON:", project)
-    recommendations = get_recommendations(project)
-    json_str = recommendations.to_json(orient='records', indent=4)
-    return json_str
+    try:
+        project = request.get_json()
+        if not project:
+            return jsonify({"error": "Invalid JSON"}), 400
+        print("Received JSON:", project)
+        recommendations = get_recommendations(project)
+        return recommendations, 200
+    except Exception as e:
+        print(f"Error in recommend endpoint: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

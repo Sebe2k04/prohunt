@@ -1,23 +1,56 @@
 import { supabase } from "@/lib/supabase";
 
 export const login = async (email, password) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-  if (error) throw error;
-  return data;
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    
+    if (error) {
+      console.error('Login error:', error);
+      throw error;
+    }
+    
+    if (!data?.user) {
+      throw new Error('No user data returned');
+    }
+    
+    return { data, error: null };
+  } catch (error) {
+    console.error('Login process error:', error);
+    return { data: null, error };
+  }
 };
 
-export const googleLogin  = async() => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google"
-
-  })
-  if (error) throw error;
-  return data;
-  
-}
+export const googleLogin = async () => {
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    });
+    
+    if (error) {
+      console.error('Google login error:', error);
+      throw error;
+    }
+    
+    if (!data?.url) {
+      throw new Error('No redirect URL returned');
+    }
+    
+    return { data, error: null };
+  } catch (error) {
+    console.error('Google login process error:', error);
+    return { data: null, error };
+  }
+};
 
 export const sendOtp = async (email) => {
   const { data, error } = await supabase.auth.signInWithOtp({ email });
@@ -28,48 +61,60 @@ export const sendOtp = async (email) => {
   }
 };
 
-export const signup = async (email, password) => {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-  });
+export const checkEmailExists = async (email) => {
+  const { data, error } = await supabase
+    .from("users")
+    .select("email")
+    .eq("email", email)
+    .single();
 
-  if (error) {
+  if (error && error.code !== 'PGRST116') { // PGRST116 is the error code for no rows returned
     throw error;
-    console.log(error);
   }
 
-  const { data: userData, error: dataError } = await supabase
-    .from("users")
-    .insert([{ id: data.user.id, email }]);
+  return !!data;
+};
 
-  if (dataError) throw error;
-  // return data;
+export const signup = async (email, password) => {
+  try {
+    // First check if email exists
+    const emailExists = await checkEmailExists(email);
+    if (emailExists) {
+      throw new Error("Email already registered. Please login instead.");
+    }
 
-  return { user: userData, message: "User signed up successfully" };
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
 
-  // const { data, error } = await supabase.auth.verifyOtp({
-  //   email,
-  //   token: otp,
-  //   type: "email",
-  // });
+    if (error) {
+      console.error("Signup error:", error);
+      throw error;
+    }
 
-  // if (error) {
-  //   throw error;
-  // }
+    if (data?.user) {
+      const { data: userData, error: dataError } = await supabase
+        .from("users")
+        .insert([{ 
+          id: data.user.id, 
+          email,
+          created_at: new Date().toISOString()
+        }]);
 
-  // // Update user's password
-  // const { data: userData, error: updateError } = await supabase.auth.updateUser(
-  //   {
-  //     password,
-  //   }
-  // );
+      if (dataError) {
+        console.error("User data insertion error:", dataError);
+        throw dataError;
+      }
 
-  // if (updateError) {
-  //   throw error;
-  // } else {
-  //   return userData;
-  // }
+      return { user: userData, message: "User signed up successfully" };
+    }
+
+    throw new Error("No user data returned from signup");
+  } catch (error) {
+    console.error("Signup process error:", error);
+    throw error;
+  }
 };
 
 export const resendSignUpOtp = async (email) => {

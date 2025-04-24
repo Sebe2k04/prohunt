@@ -1,161 +1,233 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
-import { CiHeart } from "react-icons/ci";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import {
-  SiTailwindcss,
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiNodedotjs,
-  SiPython,
-  SiGit,
-  SiFigma,
-  SiAdobexd,
-} from "react-icons/si";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { FaUser, FaMapMarkerAlt, FaClock, FaCheckCircle, FaStar, FaCode, FaCertificate, FaTwitter } from "react-icons/fa";
+import { SiGithub, SiLinkedin } from "react-icons/si";
+import { FiArrowLeft } from "react-icons/fi";
+import HeroSection from "@/components/HeroSection";
 
-const skills = [
-  {
-    name: "React",
-    icon: <SiReact className="text-blue-500" />,
-  },
-  {
-    name: "Next.js",
-    icon: <SiNextdotjs />,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: <SiTailwindcss className="text-cyan-500" />,
-  },
-  {
-    name: "TypeScript",
-    icon: <SiTypescript className="text-blue-600" />,
-  },
-  {
-    name: "JavaScript",
-    icon: <SiJavascript className="text-yellow-500" />,
-  },
-  {
-    name: "Node.js",
-    icon: <SiNodedotjs className="text-green-600" />,
-  },
-  {
-    name: "Python",
-    icon: <SiPython className="text-blue-800" />,
-  },
-  {
-    name: "Git",
-    icon: <SiGit className="text-orange-600" />,
-  },
-];
-
-const heroSkills = [
-  <SiReact key="react" className="text-blue-500" />,
-  <SiNextdotjs key="next" />,
-  <SiTailwindcss key="tailwind" className="text-cyan-500" />,
-  <SiTypescript key="typescript" className="text-blue-600" />,
-  <SiJavascript key="javascript" className="text-yellow-500" />,
-  <SiNodedotjs key="node" className="text-green-600" />,
-  <SiFigma key="figma" />,
-  <SiAdobexd key="adobexd" className="text-pink-600" />,
-];
-
-export default function Page() {
-  const [activeSkillIndex, setActiveSkillIndex] = useState(0);
+export default function PortfolioPage() {
+  const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
+  const router = useRouter();
+  
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSkillIndex((prevIndex) => (prevIndex + 1) % heroSkills.length);
-    }, 2000);
-    return () => clearInterval(interval);
+    try {
+      const state = window.history.state;
+      const userDataFromState = state?.userData;
+      
+      if (!userDataFromState || !userDataFromState.id || !userDataFromState.name) {
+        setError("Invalid or missing user data. Please return to recommendations.");
+        return;
+      }
+
+      // Process only the data that exists without providing fallbacks
+      const processedUserData = {
+        id: userDataFromState.id,
+        name: userDataFromState.name,
+        avatar: userDataFromState.avatar,
+        bio: userDataFromState.bio,
+        title: userDataFromState.title,
+        skills: userDataFromState.skills || [],
+        certifications: userDataFromState.certifications || [],
+        location: userDataFromState.location,
+        availability: userDataFromState.availability,
+        projects_completed: userDataFromState.projects_completed,
+        feedback: userDataFromState.feedback,
+        github: userDataFromState.github,
+        linkedin: userDataFromState.linkedin,
+        twitter: userDataFromState.twitter,
+        completed_projects: userDataFromState.completed_projects?.filter(project => project && project.name)
+      };
+
+      setUserData(processedUserData);
+    } catch (error) {
+      console.error("Error processing user data:", error);
+      setError("Unable to load user profile data.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const searchParams = useSearchParams();
+  const handleGoBack = () => {
+    router.back();
+  };
 
-  const name = searchParams.get('name'); 
-
-  return (
-    <div className="pt-20 lg:px-20">
-      <div className="flex justify-center text-[12px]">
-        <div className=" flex gap-2 dark:shadow-md border border-green-800  dark:shadow-gray-800/50 shadow-green-800 items-center dark:border-t dark:border-gray-900 p-1.5 pr-3 rounded-full">
-          <div className="px-3 py-1 bg-green-900/70 text-white dark:text-inherit border rounded-full border-green-800 ">
-            Hire Me
-          </div>
-          <Link href={"/"} className="flex gap-2 items-center hover:opacity-70">
-            Learn More
-            <FaArrowRight />
-          </Link>
-        </div>
-      </div>{" "}
-      <div className="grid grid-cols-2 min-h-[50vh]">
-        <div className="flex justify-center items-center">
-          <div className="border-8 border-green-600 p-1 rounded-full">
-            <Image
-              src="/pheroimg.png"
-              width="500"
-              height="500"
-              alt="portfolio"
-              className=" rounded-full border-4 border-green-700 w-[300px]"
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center">
-          <div className="">
-            <div className="">
-              <h1 className="text-2xl text-white font-semibold">
-                I&apos;m{" "}
-                <span className="text-green-600">{name}</span>
-              </h1>
-              <p className="max-w-[500px]">
-                I write code to create, not just to execute. Every function
-                solves a problem; every feature tells a story. Building digital
-                experiences is my way of shaping the future
-              </p>
-            </div>
-            <div className="flex gap-2 text-sm pt-5">
-              <Link
-                href={"/"}
-                className="text-white bg-green-800 px-5 py-1.5 rounded-lg"
-              >
-                Contact me
-              </Link>
-              <div className=" p-1 border border-green-800 text-green-800 text-xl rounded-md">
-                <CiHeart />
-              </div>
-            </div>
-           
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#121212] dark:to-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="bg-red-900/20 border border-red-800 rounded-lg p-4 text-red-400"
+          >
+            {error}
+          </motion.div>
+          
+          <div className="mt-6 text-center">
+            <button
+              onClick={handleGoBack}
+              className="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors duration-200 flex items-center space-x-2 mx-auto"
+            >
+              <FiArrowLeft className="w-4 h-4" />
+              <span>Back to Recommendations</span>
+            </button>
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-6 h-6 overflow-hidden">
-              <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                <span className="mr-2">Skilled in:</span>
-                <div className="h-6 overflow-hidden relative w-32">
-                  {skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="absolute transition-transform duration-500 flex items-center gap-1 font-medium text-green-800 dark:text-green-400"
-                      style={{
-                        transform: `translateY(${
-                          100 * (index - (activeSkillIndex % skills.length))
-                        }%)`,
-                        opacity:
-                          index === activeSkillIndex % skills.length ? 1 : 0.5,
-                      }}
-                    >
-                      {skill.icon} {skill.name}
-                    </div>
-                  ))}
-                </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#121212] dark:to-[#1a1a1a] flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex justify-center items-center"
+        >
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (!userData) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#121212] dark:to-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center"
+          >
+            <p className="text-gray-600 dark:text-gray-400">No user data available</p>
+            <button
+              onClick={handleGoBack}
+              className="mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors duration-200 flex items-center space-x-2 mx-auto"
+            >
+              <FiArrowLeft className="w-4 h-4" />
+              <span>Back to Recommendations</span>
+            </button>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#121212] dark:to-[#1a1a1a]">
+      <HeroSection userData={userData} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          {/* Skills Section */}
+          {userData.skills && userData.skills.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-gray-800"
+            >
+              <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+                <FaCode className="mr-2 text-green-500" />
+                Skills
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {userData.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 text-sm bg-gray-800 text-green-400 rounded-full border border-gray-700"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
-            </div>
-      <div className="flex justify-center pt-10 items-center">
-        <div className="border-t-2 border-green-400 w-[300px]"></div>
+            </motion.div>
+          )}
+
+          {/* Certifications Section */}
+          {userData.certifications && userData.certifications.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-gray-800"
+            >
+              <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+                <FaCertificate className="mr-2 text-green-500" />
+                Certifications
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {userData.certifications.map((cert, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 text-sm bg-gray-800 text-green-400 rounded-full border border-gray-700"
+                  >
+                    {cert}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Projects Section */}
+          {userData.completed_projects && userData.completed_projects.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-gray-800 md:col-span-2"
+            >
+              <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+                <FaCheckCircle className="mr-2 text-green-500" />
+                Completed Projects
+              </h3>
+              <div className="grid gap-4 md:grid-cols-2">
+                {userData.completed_projects.map((project, index) => (
+                  <div 
+                    key={index}
+                    className="p-4 bg-gray-800/50 rounded-lg border border-gray-700"
+                  >
+                    <h4 className="font-medium text-white">{project.name}</h4>
+                    {project.description && (
+                      <p className="text-sm text-gray-400 mt-1">{project.description}</p>
+                    )}
+                    {project.technologies && project.technologies.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {project.technologies.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-2 py-1 text-xs bg-gray-700 text-green-400 rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </motion.div>
+        
+        <div className="mt-12 text-center">
+          <button
+            onClick={handleGoBack}
+            className="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors duration-200 flex items-center space-x-2 mx-auto"
+          >
+            <FiArrowLeft className="w-4 h-4" />
+            <span>Back to Recommendations</span>
+          </button>
+        </div>
       </div>
     </div>
   );
