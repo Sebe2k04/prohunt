@@ -17,6 +17,7 @@ import {
   SiAdobexd,
 } from "react-icons/si";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const skills = [
   {
@@ -73,6 +74,10 @@ export default function Page() {
     return () => clearInterval(interval);
   }, []);
 
+  const searchParams = useSearchParams();
+
+  const name = searchParams.get('name'); 
+
   return (
     <div className="pt-20 lg:px-20">
       <div className="flex justify-center text-[12px]">
@@ -104,7 +109,7 @@ export default function Page() {
             <div className="">
               <h1 className="text-2xl text-white font-semibold">
                 I&apos;m{" "}
-                <span className="text-green-600">Michael Anderson</span>
+                <span className="text-green-600">{name}</span>
               </h1>
               <p className="max-w-[500px]">
                 I write code to create, not just to execute. Every function

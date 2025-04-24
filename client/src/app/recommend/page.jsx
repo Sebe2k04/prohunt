@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -56,7 +57,7 @@ export default function Page() {
         </div>
         <div className="col-span-2">
           <div className="grid gap-2 py-4">
-            {users &&
+            {users && users.length > 0 ?
               users.map((user, i) => {
                 return (
                   <div
@@ -84,13 +85,15 @@ export default function Page() {
                       </div>
                     </div>
                     <div className="flex items-center">
-                      <div className="px-4 py-0.5 pb-1 bg-gradient-to-br from-green-500 via-green-700 to-green-800 font-semibold rounded-lg border-green-400 text-white">
+                      <Link href={`/portfolio?name=${user.name}`} className="px-4 py-0.5 pb-1 bg-gradient-to-br from-green-500 via-green-700 to-green-800 font-semibold rounded-lg border-green-400 text-white">
                         View
-                      </div>
+                      </Link>
                     </div>
                   </div>
                 );
-              })}
+              }): <div className="pt-24">
+                <h1 className="text-white text-center">Loading</h1>
+              </div> }
           </div>
         </div>
       </div>
