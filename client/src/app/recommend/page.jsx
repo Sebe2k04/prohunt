@@ -15,65 +15,65 @@ export default function Page() {
   const [projectData, setProjectData] = useState(null);
   const [activeTab, setActiveTab] = useState("recommendations");
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const projectId = searchParams.get("projectId");
+const router = useRouter();
+const projectId = searchParams.get("projectId");
 
-  useEffect(() => {
-    const fetchProjectAndRecommendations = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+useEffect(() => {
+  const fetchProjectAndRecommendations = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-        let projectToUse = null;
+      let projectToUse = null;
 
-        // If projectId is provided, fetch project data from Supabase
-        if (projectId) {
-          const {
-            data: { user },
-          } = await supabase.auth.getUser();
-          if (!user) {
-            throw new Error("Please sign in to view recommendations");
-          }
-
-          const { data: project, error: projectError } = await supabase
-            .from("projects")
-            .select("*")
-            .eq("id", projectId)
-            .eq("created_by", user.id)
-            .single();
-
-          if (projectError) throw projectError;
-          if (!project) throw new Error("Project not found");
-
-          projectToUse = project;
+      // If projectId is provided, fetch project data from Supabase
+      if (projectId) {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) {
+          throw new Error("Please sign in to view recommendations");
         }
 
-        // Prepare project data for recommendation API
-        const dataToSend = projectToUse
-          ? {
-              project_id: Math.floor(Math.random() * (201 - 100)) + 100,
-              project_name: projectToUse.name,
-              required_skills: Array.isArray(projectToUse.required_skills)
-                ? projectToUse.required_skills
-                : [],
-              preferred_skills: Array.isArray(projectToUse.preferred_skills)
-                ? projectToUse.preferred_skills
-                : [],
-              complexity: projectToUse.complexity || "Medium",
-              location: projectToUse.location || "Remote",
-              shift: projectToUse.shift || "Day",
-              compensation_type: projectToUse.compensation_type || "Price",
-              domain: projectToUse.domain || "Software Development",
-            }
-          : {
+        const { data: project, error: projectError } = await supabase
+          .from("projects")
+          .select("*")
+          .eq("id", projectId)
+          .eq("created_by", user.id)
+          .single();
+
+        if (projectError) throw projectError;
+        if (!project) throw new Error("Project not found");
+
+        projectToUse = project;
+      }
+
+      // Prepare project data for recommendation API
+      const dataToSend = projectToUse
+        ? {
+            project_id: Math.floor(Math.random() * (201 - 100)) + 100,
+            project_name: projectToUse.name,
+            required_skills: Array.isArray(projectToUse.required_skills)
+              ? projectToUse.required_skills
+              : [],
+            preferred_skills: Array.isArray(projectToUse.preferred_skills)
+              ? projectToUse.preferred_skills
+              : [],
+            complexity: projectToUse.complexity || "Medium",
+            location: projectToUse.location || "Remote",
+            shift: projectToUse.shift || "Day",
+            compensation_type: projectToUse.compensation_type || "Price",
+            domain: projectToUse.domain || "Software Development",
+          }
+        : {
               project_id: 101,
               project_name: "AI Chatbot Development",
               required_skills: ["Python"],
               preferred_skills: ["React", "JavaScript"],
               complexity: "High",
               location: "New York",
-              shift: "Day",
-              compensation_type: "Price",
+            shift: "Day",
+            compensation_type: "Price",
               domain: "AI",
             };
 
@@ -87,7 +87,7 @@ export default function Page() {
           throw new Error("Invalid response from recommendation service");
         }
 
-        // Transform the recommendations while preserving original data
+      // Transform the recommendations while preserving original data
         const transformedRecommendations = response.data
           .filter((user) => user && user.user_id && user.name)
           .map((user) => ({
@@ -120,19 +120,19 @@ export default function Page() {
 
         setProjectData(dataToSend);
         setUsers(transformedRecommendations);
-      } catch (error) {
-        console.error("Error fetching recommendations:", error);
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
         setError(error.message);
         toast.error(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchProjectAndRecommendations();
-  }, [projectId]);
+  fetchProjectAndRecommendations();
+}, [projectId]);
 
-  const handleViewProfile = (user) => {
+const handleViewProfile = (user) => {
     // Store the project data in localStorage
     localStorage.setItem(
       "currentProject",
@@ -264,7 +264,7 @@ export default function Page() {
       </div>
       
       <div className="lg:px-20 px-8 pb-12">
-        <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 gap-5">
           {/* Project Requirements Card */}
           <motion.div 
             className="relative p-2"
@@ -394,7 +394,7 @@ export default function Page() {
                 initial="hidden"
                 animate="visible"
               >
-                {users && users.length > 0 ? (
+            {users && users.length > 0 ? (
                   users.map((user, index) => (
                     <motion.div
                       key={user.id}
@@ -652,7 +652,7 @@ export default function Page() {
                       </div>
                     ))}
                   </div>
-                </div>
+              </div>
               </motion.div>
             )}
           </motion.div>
