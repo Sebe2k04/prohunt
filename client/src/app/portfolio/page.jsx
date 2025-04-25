@@ -12,42 +12,17 @@ export default function PortfolioPage() {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const router = useRouter();
-  
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("userId");
+
   useEffect(() => {
-    try {
-      const state = window.history.state;
-      const userDataFromState = state?.userData;
-      
-      if (!userDataFromState || !userDataFromState.id || !userDataFromState.name) {
-        setError("Invalid or missing user data. Please return to recommendations.");
-        return;
-      }
-
-      // Process only the data that exists without providing fallbacks
-      const processedUserData = {
-        id: userDataFromState.id,
-        name: userDataFromState.name,
-        avatar: userDataFromState.avatar,
-        bio: userDataFromState.bio,
-        title: userDataFromState.title,
-        skills: userDataFromState.skills || [],
-        certifications: userDataFromState.certifications || [],
-        location: userDataFromState.location,
-        availability: userDataFromState.availability,
-        projects_completed: userDataFromState.projects_completed,
-        feedback: userDataFromState.feedback,
-        github: userDataFromState.github,
-        linkedin: userDataFromState.linkedin,
-        twitter: userDataFromState.twitter,
-        completed_projects: userDataFromState.completed_projects?.filter(project => project && project.name)
-      };
-
-      setUserData(processedUserData);
-    } catch (error) {
-      console.error("Error processing user data:", error);
-      setError("Unable to load user profile data.");
-    } finally {
-      setLoading(false);
+    // Fetch data from localStorage
+    const storedData = localStorage.getItem('currentProject');
+    if (storedData) {
+      const { projectData, userData } = JSON.parse(storedData);
+      setUserData(userData);
+      setLoading(false)
+      console.log(userData)
     }
   }, []);
 

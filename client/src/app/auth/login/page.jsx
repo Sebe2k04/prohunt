@@ -13,32 +13,35 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const {user} = useAuth();
-  if(user){
-    router.push("/secure/dashboard")
-  }
+  const { user } = useAuth();
+  
+  useEffect(() => {
+    if (user) {
+      router.push("/secure/dashboard");
+    }
+  }, [user, router]);
 
   useEffect(() => {
-    const error = searchParams.get('error');
+    const error = searchParams.get("error");
     if (error) {
       switch (error) {
-        case 'auth_callback_failed':
-          toast.error('Authentication failed. Please try again.');
+        case "auth_callback_failed":
+          toast.error("Authentication failed. Please try again.");
           break;
-        case 'no_session':
-          toast.error('No active session found. Please login again.');
+        case "no_session":
+          toast.error("No active session found. Please login again.");
           break;
-        case 'user_check_failed':
-          toast.error('Error checking user account. Please try again.');
+        case "user_check_failed":
+          toast.error("Error checking user account. Please try again.");
           break;
-        case 'user_creation_failed':
-          toast.error('Error creating user account. Please try again.');
+        case "user_creation_failed":
+          toast.error("Error creating user account. Please try again.");
           break;
-        case 'unexpected_error':
-          toast.error('An unexpected error occurred. Please try again.');
+        case "unexpected_error":
+          toast.error("An unexpected error occurred. Please try again.");
           break;
         default:
-          toast.error('An error occurred. Please try again.');
+          toast.error("An error occurred. Please try again.");
       }
     }
   }, [searchParams]);
@@ -49,17 +52,17 @@ export default function Page() {
     try {
       const { data, error } = await login(email, password);
       if (error) throw error;
-      
+
       if (data?.user) {
-        console.log('Login successful, redirecting...');
-        router.push('/secure/dashboard');
+        console.log("Login successful, redirecting...");
+        router.push("/secure/dashboard");
         router.refresh();
       } else {
-        throw new Error('No user data returned');
+        throw new Error("No user data returned");
       }
     } catch (error) {
-      console.error('Login error:', error);
-      toast.error(error.message || 'Failed to login. Please try again.');
+      console.error("Login error:", error);
+      toast.error(error.message || "Failed to login. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -71,12 +74,12 @@ export default function Page() {
     try {
       const { data, error } = await googleLogin();
       if (error) throw error;
-      
+
       if (data?.url) {
-        console.log('Google login URL:', data.url);
+        console.log("Google login URL:", data.url);
         window.location.href = data.url;
       } else {
-        throw new Error('No redirect URL returned');
+        throw new Error("No redirect URL returned");
       }
     } catch (error) {
       console.error("Google login error:", error);
@@ -135,7 +138,7 @@ export default function Page() {
                   disabled={isLoading}
                   className="focus:outline-none w-full text-white bg-inherit border font-bold tracking-wide rounded-full border-green-400 hover:tracking-widest hover:from-green-500 hover:to-green-800 duration-200 bg-gradient-to-br from-green-900 via-green-600 to-green-800 px-5 py-2 disabled:opacity-50"
                 >
-                  {isLoading ? 'Logging in...' : 'Login'}
+                  {isLoading ? "Logging in..." : "Login"}
                 </button>
               </div>
             </form>
@@ -146,25 +149,29 @@ export default function Page() {
                 New to Prohunt ?
               </h1>
 
-              <Link
-                href={"/auth/signup"}
-                className="hover:tracking-wider duration-200 hover:underline underline-offset-4"
-              >
-                Create{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-br from-green-400 to-green-800 font-semibold">
-                  New
-                </span>{" "}
-                Account
-              </Link>
-              <button 
-                onClick={handleGoogle} 
-                disabled={isLoading}
-                className="py-5 cursor-pointer disabled:opacity-50"
-              >
-                <h1 className="hover:underline underline-offset-2 duration-200 text-green-400">
-                  {isLoading ? 'Connecting...' : 'Login with Google'}
-                </h1>
-              </button>
+              <div className="">
+                <div className="">
+                  <Link
+                    href={"/auth/signup"}
+                    className="hover:tracking-wider duration-200 hover:underline underline-offset-4"
+                  >
+                    Create{" "}
+                    <span className="bg-clip-text text-transparent bg-gradient-to-br from-green-400 to-green-800 font-semibold">
+                      New
+                    </span>{" "}
+                    Account
+                  </Link>
+                </div>
+                <button
+                  onClick={handleGoogle}
+                  disabled={isLoading}
+                  className="py-5 cursor-pointer disabled:opacity-50"
+                >
+                  <h1 className="hover:underline underline-offset-2 duration-200 text-green-400">
+                    {isLoading ? "Connecting..." : "Login with Google"}
+                  </h1>
+                </button>
+              </div>
             </div>
           </div>
         </div>

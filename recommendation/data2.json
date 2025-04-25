@@ -3,11 +3,9 @@
         "user_id": 1,
         "name": "Jeremy",
         "skills": [
-            "React.js",
-            "Node.js",
-            "TypeScript",
-            "AWS",
-            "Docker"
+            "C++",
+            "MongoDB",
+            "Python"
         ],
         "certifications": [
             "Certified Scrum Master"
@@ -38,10 +36,10 @@
         "user_id": 2,
         "name": "Jeffrey",
         "skills": [
-            "Python",
-            "TensorFlow",
-            "Kubernetes",
             "GraphQL",
+            "Flask",
+            "SQL",
+            "Data Science",
             "MongoDB"
         ],
         "certifications": [],
@@ -68,14 +66,14 @@
         "name": "Diana",
         "skills": [
             "Java",
-            "Spring Boot",
-            "Microservices",
-            "AWS",
-            "Docker"
+            "Machine Learning",
+            "GraphQL",
+            "Flask",
+            "Azure"
         ],
         "certifications": [],
         "projects_completed": 24,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Bryanside",
         "availability": "Available",
         "communication": 3.6,
@@ -93,9 +91,9 @@
         "name": "Craig",
         "skills": [
             "Machine Learning",
-            "Python",
-            "TensorFlow",
             "AWS",
+            "Java",
+            "SQL",
             "Data Science"
         ],
         "certifications": [
@@ -120,11 +118,11 @@
         "user_id": 5,
         "name": "Bryan",
         "skills": [
-            "React.js",
-            "Node.js",
-            "TypeScript",
-            "GraphQL",
-            "MongoDB"
+            "JavaScript",
+            "AI",
+            "Flask",
+            "AWS",
+            "Python"
         ],
         "certifications": [
             "Machine Learning Expert"
@@ -155,11 +153,9 @@
         "user_id": 6,
         "name": "Denise",
         "skills": [
-            "Python",
-            "TensorFlow",
-            "AWS",
-            "Docker",
-            "Kubernetes"
+            "AI",
+            "Java",
+            "JavaScript"
         ],
         "certifications": [
             "Certified Scrum Master"
@@ -182,11 +178,11 @@
         "user_id": 7,
         "name": "Jennifer",
         "skills": [
-            "Java",
-            "Spring Boot",
-            "Microservices",
-            "AWS",
-            "Docker"
+            "MongoDB",
+            "Machine Learning",
+            "GraphQL",
+            "SQL",
+            "Blockchain"
         ],
         "certifications": [],
         "projects_completed": 25,
@@ -215,11 +211,10 @@
         "user_id": 8,
         "name": "Robert",
         "skills": [
-            "React.js",
-            "Node.js",
-            "TypeScript",
             "GraphQL",
-            "MongoDB"
+            "Machine Learning",
+            "MongoDB",
+            "C++"
         ],
         "certifications": [],
         "projects_completed": 7,
@@ -244,11 +239,9 @@
         "user_id": 9,
         "name": "Mary",
         "skills": [
-            "Python",
-            "TensorFlow",
-            "AWS",
-            "Docker",
-            "Kubernetes"
+            "GraphQL",
+            "MongoDB",
+            "Python"
         ],
         "certifications": [
             "Machine Learning Expert"
@@ -373,7 +366,8 @@
         "skills": [
             "AWS",
             "Azure",
-            "Data Science"
+            "Data Science",
+            "Blockchain"
         ],
         "certifications": [
             "Cybersecurity Specialist",
@@ -399,7 +393,8 @@
         "skills": [
             "Azure",
             "GraphQL",
-            "AWS"
+            "AWS",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 12,
@@ -422,7 +417,8 @@
         "skills": [
             "Django",
             "Node.js",
-            "Flask"
+            "Flask",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 17,
@@ -474,6 +470,7 @@
         "user_id": 17,
         "name": "Bruce",
         "skills": [
+            "AI",
             "Node.js",
             "Machine Learning",
             "MongoDB"
@@ -508,11 +505,12 @@
         "name": "Patrick",
         "skills": [
             "JavaScript",
-            "Django"
+            "Django",
+            "React"
         ],
         "certifications": [],
         "projects_completed": 26,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Mistyburgh",
         "availability": "Busy",
         "communication": 4.9,
@@ -572,6 +570,7 @@
         "name": "Norma",
         "skills": [
             "MongoDB",
+            "AI",
             "GraphQL"
         ],
         "certifications": [],
@@ -594,7 +593,8 @@
         "name": "Lauren",
         "skills": [
             "MongoDB",
-            "Django"
+            "Django",
+            "AI"
         ],
         "certifications": [
             "Machine Learning Expert"
@@ -645,6 +645,7 @@
         "name": "Stacy",
         "skills": [
             "SQL",
+            "React",
             "Azure",
             "Node.js"
         ],
@@ -695,6 +696,7 @@
         "name": "Amy",
         "skills": [
             "Python",
+            "React",
             "JavaScript",
             "Django",
             "Data Science"
@@ -729,6 +731,7 @@
         "name": "Sharon",
         "skills": [
             "Python",
+            "AI",
             "Java",
             "AWS"
         ],
@@ -767,7 +770,7 @@
             "DevOps Engineer"
         ],
         "projects_completed": 17,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Ritamouth",
         "availability": "Busy",
         "communication": 3.9,
@@ -793,7 +796,7 @@
             "AWS Certified Developer"
         ],
         "projects_completed": 24,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "South Robertmouth",
         "availability": "Busy",
         "communication": 3.9,
@@ -848,7 +851,9 @@
         "user_id": 30,
         "name": "Dana",
         "skills": [
+            "Blockchain",
             "C++",
+            "AI",
             "Java"
         ],
         "certifications": [
@@ -883,6 +888,7 @@
         "skills": [
             "MongoDB",
             "Machine Learning",
+            "Blockchain",
             "GraphQL",
             "Spring Boot"
         ],
@@ -907,6 +913,7 @@
         "user_id": 32,
         "name": "Jared",
         "skills": [
+            "React",
             "GraphQL",
             "SQL",
             "Spring Boot"
@@ -971,6 +978,7 @@
         "skills": [
             "GraphQL",
             "Python",
+            "React",
             "JavaScript",
             "MongoDB"
         ],
@@ -1001,7 +1009,9 @@
         "name": "Teresa",
         "skills": [
             "Azure",
-            "Data Science"
+            "Data Science",
+            "React",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 15,
@@ -1085,6 +1095,7 @@
         "user_id": 38,
         "name": "Victoria",
         "skills": [
+            "AI",
             "AWS",
             "Azure",
             "Flask"
@@ -1094,7 +1105,7 @@
         "feedback": 4.8,
         "location": "Port Charles",
         "availability": "Available",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Day",
         "compensation_type": "Fixed",
         "completed_projects": [
@@ -1140,6 +1151,8 @@
         "name": "Mary",
         "skills": [
             "Python",
+            "React",
+            "AI",
             "GraphQL",
             "C++"
         ],
@@ -1147,7 +1160,7 @@
             "AWS Certified Developer"
         ],
         "projects_completed": 10,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "East Barbara",
         "availability": "Available",
         "communication": 4.2,
@@ -1168,7 +1181,9 @@
         "user_id": 41,
         "name": "Christy",
         "skills": [
-            "GraphQL"
+            "GraphQL",
+            "React",
+            "Blockchain"
         ],
         "certifications": [
             "Machine Learning Expert"
@@ -1199,7 +1214,7 @@
             "DevOps Engineer"
         ],
         "projects_completed": 14,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Riveraborough",
         "availability": "Busy",
         "communication": 4.9,
@@ -1220,6 +1235,7 @@
         "user_id": 43,
         "name": "Richard",
         "skills": [
+            "Blockchain",
             "Flask",
             "Python",
             "Django",
@@ -1266,7 +1282,7 @@
         "feedback": 4.5,
         "location": "Rhodeshaven",
         "availability": "Busy",
-        "communication": 5,
+        "communication": 5.0,
         "shift": "Night",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -1281,6 +1297,8 @@
         "name": "Garrett",
         "skills": [
             "SQL",
+            "AI",
+            "React",
             "C++",
             "Flask"
         ],
@@ -1355,6 +1373,7 @@
         "user_id": 48,
         "name": "Mallory",
         "skills": [
+            "Blockchain",
             "Python",
             "Machine Learning"
         ],
@@ -1409,6 +1428,7 @@
         "name": "John",
         "skills": [
             "Node.js",
+            "AI",
             "Machine Learning"
         ],
         "certifications": [],
@@ -1470,6 +1490,7 @@
             "JavaScript",
             "Java",
             "Machine Learning",
+            "AI",
             "SQL"
         ],
         "certifications": [
@@ -1554,6 +1575,7 @@
         "name": "Todd",
         "skills": [
             "AWS",
+            "AI",
             "Flask",
             "Python",
             "Azure"
@@ -1618,6 +1640,7 @@
         "name": "Stacey",
         "skills": [
             "Python",
+            "React",
             "MongoDB",
             "GraphQL",
             "Machine Learning"
@@ -1645,7 +1668,9 @@
         "name": "Kyle",
         "skills": [
             "Node.js",
+            "Blockchain",
             "Machine Learning",
+            "React",
             "GraphQL"
         ],
         "certifications": [],
@@ -1738,7 +1763,7 @@
             "Cybersecurity Specialist"
         ],
         "projects_completed": 16,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Beasleybury",
         "availability": "Available",
         "communication": 3.6,
@@ -1760,6 +1785,7 @@
         "name": "Jacob",
         "skills": [
             "C++",
+            "AI",
             "Flask"
         ],
         "certifications": [
@@ -1769,7 +1795,7 @@
         "feedback": 3.6,
         "location": "New Christopherberg",
         "availability": "Available",
-        "communication": 5,
+        "communication": 5.0,
         "shift": "Day",
         "compensation_type": "Fixed",
         "completed_projects": [
@@ -1788,6 +1814,7 @@
         "name": "Casey",
         "skills": [
             "GraphQL",
+            "AI",
             "Node.js"
         ],
         "certifications": [
@@ -1813,7 +1840,8 @@
         "name": "Thomas",
         "skills": [
             "GraphQL",
-            "Java"
+            "Java",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 22,
@@ -1835,7 +1863,8 @@
         "name": "Johnny",
         "skills": [
             "Data Science",
-            "Django"
+            "Django",
+            "AI"
         ],
         "certifications": [
             "AWS Certified Developer"
@@ -1996,10 +2025,10 @@
         ],
         "certifications": [],
         "projects_completed": 6,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Natashaberg",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Night",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -2022,6 +2051,7 @@
         "name": "John",
         "skills": [
             "Java",
+            "AI",
             "Azure",
             "SQL"
         ],
@@ -2112,6 +2142,7 @@
         "name": "Maureen",
         "skills": [
             "MongoDB",
+            "React",
             "Spring Boot"
         ],
         "certifications": [
@@ -2136,6 +2167,7 @@
         "name": "Jennifer",
         "skills": [
             "Node.js",
+            "AI",
             "Java",
             "Python",
             "JavaScript"
@@ -2148,7 +2180,7 @@
         "feedback": 3.7,
         "location": "Cookeborough",
         "availability": "Available",
-        "communication": 5,
+        "communication": 5.0,
         "shift": "Day",
         "compensation_type": "Price",
         "completed_projects": [
@@ -2196,7 +2228,8 @@
         "skills": [
             "Python",
             "Flask",
-            "JavaScript"
+            "JavaScript",
+            "React"
         ],
         "certifications": [],
         "projects_completed": 11,
@@ -2227,6 +2260,7 @@
         "skills": [
             "GraphQL",
             "SQL",
+            "Blockchain",
             "Data Science",
             "AWS"
         ],
@@ -2253,7 +2287,8 @@
         "name": "Christopher",
         "skills": [
             "Django",
-            "Flask"
+            "Flask",
+            "React"
         ],
         "certifications": [
             "Full Stack Developer"
@@ -2277,7 +2312,8 @@
         "name": "Allison",
         "skills": [
             "C++",
-            "Python"
+            "Python",
+            "React"
         ],
         "certifications": [],
         "projects_completed": 24,
@@ -2298,6 +2334,7 @@
         "user_id": 81,
         "name": "Jose",
         "skills": [
+            "AI",
             "Data Science",
             "Django"
         ],
@@ -2465,6 +2502,7 @@
         "skills": [
             "Node.js",
             "Python",
+            "React",
             "C++"
         ],
         "certifications": [
@@ -2495,6 +2533,7 @@
             "MongoDB",
             "Spring Boot",
             "Azure",
+            "AI",
             "Flask"
         ],
         "certifications": [
@@ -2505,7 +2544,7 @@
         "feedback": 4.1,
         "location": "Donaldbury",
         "availability": "Available",
-        "communication": 5,
+        "communication": 5.0,
         "shift": "Day",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -2521,7 +2560,8 @@
         "skills": [
             "SQL",
             "AWS",
-            "C++"
+            "C++",
+            "AI"
         ],
         "certifications": [
             "AWS Certified Developer"
@@ -2546,11 +2586,12 @@
         "skills": [
             "Python",
             "Flask",
+            "React",
             "GraphQL"
         ],
         "certifications": [],
         "projects_completed": 22,
-        "feedback": 5,
+        "feedback": 5.0,
         "location": "Port Bryan",
         "availability": "Busy",
         "communication": 3.9,
@@ -2613,7 +2654,7 @@
             "Certified Scrum Master"
         ],
         "projects_completed": 27,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Mariaton",
         "availability": "Available",
         "communication": 3.6,
@@ -2631,11 +2672,12 @@
         "name": "Vanessa",
         "skills": [
             "Flask",
+            "React",
             "AWS"
         ],
         "certifications": [],
         "projects_completed": 22,
-        "feedback": 5,
+        "feedback": 5.0,
         "location": "Robinsonmouth",
         "availability": "Busy",
         "communication": 4.7,
@@ -2678,6 +2720,7 @@
         "skills": [
             "Machine Learning",
             "C++",
+            "Blockchain",
             "Django"
         ],
         "certifications": [],
@@ -2708,13 +2751,14 @@
         "name": "Jay",
         "skills": [
             "Azure",
-            "Python"
+            "Python",
+            "Blockchain"
         ],
         "certifications": [
             "Data Engineer"
         ],
         "projects_completed": 20,
-        "feedback": 5,
+        "feedback": 5.0,
         "location": "Whitetown",
         "availability": "Busy",
         "communication": 4.9,
@@ -2767,7 +2811,7 @@
         "feedback": 3.9,
         "location": "Davisshire",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Night",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -2785,6 +2829,7 @@
         "user_id": 99,
         "name": "Christopher",
         "skills": [
+            "Blockchain",
             "JavaScript",
             "Django",
             "Spring Boot"
@@ -2864,7 +2909,9 @@
         "user_id": 102,
         "name": "Angela",
         "skills": [
-            "GraphQL"
+            "Blockchain",
+            "GraphQL",
+            "React"
         ],
         "certifications": [
             "Machine Learning Expert",
@@ -2955,6 +3002,7 @@
             "Spring Boot",
             "Flask",
             "C++",
+            "Blockchain",
             "Node.js"
         ],
         "certifications": [
@@ -2965,7 +3013,7 @@
         "feedback": 4.3,
         "location": "New Gina",
         "availability": "Available",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Night",
         "compensation_type": "Fixed",
         "completed_projects": [
@@ -2988,6 +3036,7 @@
         "name": "Jeremy",
         "skills": [
             "Spring Boot",
+            "React",
             "Machine Learning",
             "Python"
         ],
@@ -2996,7 +3045,7 @@
             "Cybersecurity Specialist"
         ],
         "projects_completed": 22,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "West Stephanie",
         "availability": "Available",
         "communication": 4.9,
@@ -3015,6 +3064,7 @@
         "skills": [
             "Node.js",
             "Django",
+            "Blockchain",
             "GraphQL"
         ],
         "certifications": [
@@ -3040,7 +3090,8 @@
         "name": "Michael",
         "skills": [
             "C++",
-            "Flask"
+            "Flask",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 25,
@@ -3066,6 +3117,7 @@
         "name": "Sandra",
         "skills": [
             "Java",
+            "AI",
             "Flask"
         ],
         "certifications": [
@@ -3108,7 +3160,7 @@
             "Data Engineer"
         ],
         "projects_completed": 13,
-        "feedback": 5,
+        "feedback": 5.0,
         "location": "Fieldsmouth",
         "availability": "Available",
         "communication": 4.9,
@@ -3127,6 +3179,7 @@
         "skills": [
             "Machine Learning",
             "Node.js",
+            "Blockchain",
             "Spring Boot",
             "SQL"
         ],
@@ -3184,7 +3237,8 @@
             "SQL",
             "Flask",
             "Machine Learning",
-            "MongoDB"
+            "MongoDB",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 22,
@@ -3295,6 +3349,7 @@
         "name": "Kenneth",
         "skills": [
             "MongoDB",
+            "AI",
             "Flask"
         ],
         "certifications": [
@@ -3378,6 +3433,7 @@
             "SQL",
             "Java",
             "Node.js",
+            "React",
             "MongoDB"
         ],
         "certifications": [],
@@ -3467,6 +3523,7 @@
         "name": "Tyler",
         "skills": [
             "MongoDB",
+            "React",
             "SQL",
             "Java",
             "Flask"
@@ -3491,6 +3548,8 @@
         "name": "Jeffrey",
         "skills": [
             "Flask",
+            "React",
+            "AI",
             "Java",
             "Machine Learning"
         ],
@@ -3518,6 +3577,7 @@
         "name": "Sharon",
         "skills": [
             "Data Science",
+            "React",
             "Flask",
             "AWS",
             "Django"
@@ -3543,6 +3603,7 @@
         "user_id": 126,
         "name": "Jodi",
         "skills": [
+            "Blockchain",
             "SQL",
             "MongoDB"
         ],
@@ -3570,6 +3631,7 @@
         "skills": [
             "Node.js",
             "AWS",
+            "Blockchain",
             "C++"
         ],
         "certifications": [
@@ -3650,7 +3712,7 @@
         "feedback": 3.6,
         "location": "South Destinyberg",
         "availability": "Available",
-        "communication": 5,
+        "communication": 5.0,
         "shift": "Day",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -3665,7 +3727,8 @@
         "name": "Susan",
         "skills": [
             "Python",
-            "C++"
+            "C++",
+            "React"
         ],
         "certifications": [
             "Certified Scrum Master",
@@ -3692,7 +3755,8 @@
             "AWS",
             "GraphQL",
             "JavaScript",
-            "Python"
+            "Python",
+            "Blockchain"
         ],
         "certifications": [
             "Machine Learning Expert"
@@ -3756,7 +3820,8 @@
         "skills": [
             "Machine Learning",
             "MongoDB",
-            "Python"
+            "Python",
+            "AI"
         ],
         "certifications": [
             "AWS Certified Developer",
@@ -3766,7 +3831,7 @@
         "feedback": 4.3,
         "location": "Andrewberg",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Day",
         "compensation_type": "Price",
         "completed_projects": [
@@ -3781,7 +3846,9 @@
         "name": "Kimberly",
         "skills": [
             "Node.js",
-            "SQL"
+            "React",
+            "SQL",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 28,
@@ -3803,6 +3870,7 @@
         "name": "Douglas",
         "skills": [
             "Data Science",
+            "AI",
             "GraphQL"
         ],
         "certifications": [],
@@ -3830,7 +3898,7 @@
         ],
         "certifications": [],
         "projects_completed": 11,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "West Colin",
         "availability": "Available",
         "communication": 3.8,
@@ -3903,12 +3971,13 @@
         "user_id": 139,
         "name": "Jacqueline",
         "skills": [
+            "React",
             "JavaScript",
             "Python"
         ],
         "certifications": [],
         "projects_completed": 25,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Susanville",
         "availability": "Available",
         "communication": 4.2,
@@ -3929,14 +3998,16 @@
         "user_id": 140,
         "name": "Tony",
         "skills": [
-            "Django"
+            "Django",
+            "Blockchain",
+            "AI"
         ],
         "certifications": [
             "Full Stack Developer",
             "Certified Scrum Master"
         ],
         "projects_completed": 6,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "New Brian",
         "availability": "Busy",
         "communication": 4.6,
@@ -3958,6 +4029,7 @@
         "name": "Jill",
         "skills": [
             "Node.js",
+            "Blockchain",
             "Java",
             "JavaScript"
         ],
@@ -3992,6 +4064,7 @@
         "skills": [
             "Machine Learning",
             "Java",
+            "AI",
             "AWS"
         ],
         "certifications": [
@@ -4019,6 +4092,7 @@
         "user_id": 143,
         "name": "Gregory",
         "skills": [
+            "Blockchain",
             "Data Science",
             "GraphQL"
         ],
@@ -4043,7 +4117,8 @@
         "skills": [
             "GraphQL",
             "Java",
-            "JavaScript"
+            "JavaScript",
+            "React"
         ],
         "certifications": [
             "Machine Learning Expert"
@@ -4100,7 +4175,9 @@
         "user_id": 146,
         "name": "David",
         "skills": [
-            "Django"
+            "Blockchain",
+            "Django",
+            "AI"
         ],
         "certifications": [],
         "projects_completed": 18,
@@ -4125,6 +4202,7 @@
         "user_id": 147,
         "name": "Monica",
         "skills": [
+            "React",
             "JavaScript",
             "Data Science"
         ],
@@ -4159,7 +4237,7 @@
             "AWS Certified Developer"
         ],
         "projects_completed": 27,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "New Seanburgh",
         "availability": "Busy",
         "communication": 4.4,
@@ -4181,6 +4259,7 @@
         "name": "Benjamin",
         "skills": [
             "AWS",
+            "React",
             "GraphQL",
             "JavaScript",
             "Spring Boot"
@@ -4220,7 +4299,7 @@
         "feedback": 4.8,
         "location": "Port Pamela",
         "availability": "Available",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Day",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -4238,6 +4317,7 @@
         "user_id": 151,
         "name": "Krystal",
         "skills": [
+            "AI",
             "Django",
             "Azure",
             "Data Science",
@@ -4251,7 +4331,7 @@
         "feedback": 4.3,
         "location": "New Kevinburgh",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Day",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -4270,6 +4350,8 @@
         "name": "Jessica",
         "skills": [
             "AWS",
+            "Blockchain",
+            "AI",
             "Machine Learning",
             "Node.js"
         ],
@@ -4299,6 +4381,7 @@
             "Node.js",
             "MongoDB",
             "Data Science",
+            "React",
             "Python"
         ],
         "certifications": [
@@ -4308,7 +4391,7 @@
         "feedback": 4.1,
         "location": "Johnport",
         "availability": "Available",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Night",
         "compensation_type": "Price",
         "completed_projects": [
@@ -4397,7 +4480,7 @@
         ],
         "certifications": [],
         "projects_completed": 20,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "Christensenville",
         "availability": "Busy",
         "communication": 3.9,
@@ -4501,9 +4584,11 @@
         "user_id": 160,
         "name": "Ashley",
         "skills": [
+            "AI",
             "GraphQL",
             "AWS",
-            "Django"
+            "Django",
+            "Blockchain"
         ],
         "certifications": [
             "Cybersecurity Specialist",
@@ -4561,7 +4646,10 @@
         "user_id": 162,
         "name": "David",
         "skills": [
-            "MongoDB"
+            "MongoDB",
+            "Blockchain",
+            "React",
+            "AI"
         ],
         "certifications": [
             "AWS Certified Developer"
@@ -4588,6 +4676,7 @@
         "user_id": 163,
         "name": "Kevin",
         "skills": [
+            "React",
             "Flask",
             "JavaScript",
             "C++",
@@ -4646,6 +4735,8 @@
         "user_id": 165,
         "name": "Jay",
         "skills": [
+            "Blockchain",
+            "React",
             "Data Science",
             "MongoDB"
         ],
@@ -4656,7 +4747,7 @@
         "feedback": 4.3,
         "location": "Lake Megan",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Night",
         "compensation_type": "Price",
         "completed_projects": [
@@ -4678,8 +4769,10 @@
         "user_id": 166,
         "name": "Richard",
         "skills": [
+            "AI",
             "Python",
-            "AWS"
+            "AWS",
+            "Blockchain"
         ],
         "certifications": [
             "Certified Scrum Master"
@@ -4710,6 +4803,7 @@
         "user_id": 167,
         "name": "Darryl",
         "skills": [
+            "Blockchain",
             "Node.js",
             "AWS",
             "SQL"
@@ -4777,6 +4871,7 @@
         "name": "William",
         "skills": [
             "Java",
+            "AI",
             "Node.js",
             "Spring Boot",
             "Django"
@@ -4786,7 +4881,7 @@
             "Data Engineer"
         ],
         "projects_completed": 12,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "East Anthony",
         "availability": "Busy",
         "communication": 3.8,
@@ -4808,7 +4903,8 @@
         "name": "Rebecca",
         "skills": [
             "Data Science",
-            "AWS"
+            "AWS",
+            "React"
         ],
         "certifications": [
             "Certified Scrum Master",
@@ -4837,6 +4933,8 @@
         "name": "Ross",
         "skills": [
             "Python",
+            "AI",
+            "Blockchain",
             "Data Science",
             "C++"
         ],
@@ -4866,7 +4964,7 @@
         ],
         "certifications": [],
         "projects_completed": 14,
-        "feedback": 4,
+        "feedback": 4.0,
         "location": "North Kenneth",
         "availability": "Busy",
         "communication": 4.1,
@@ -4886,6 +4984,7 @@
             "Node.js",
             "JavaScript",
             "MongoDB",
+            "AI",
             "AWS"
         ],
         "certifications": [
@@ -4914,7 +5013,8 @@
         "name": "Kyle",
         "skills": [
             "SQL",
-            "GraphQL"
+            "GraphQL",
+            "Blockchain"
         ],
         "certifications": [
             "Cybersecurity Specialist"
@@ -4980,6 +5080,7 @@
         "skills": [
             "AWS",
             "Java",
+            "React",
             "Spring Boot"
         ],
         "certifications": [
@@ -5003,6 +5104,7 @@
         "user_id": 177,
         "name": "Charlene",
         "skills": [
+            "AI",
             "GraphQL",
             "JavaScript",
             "Spring Boot",
@@ -5033,6 +5135,7 @@
         "user_id": 178,
         "name": "Karen",
         "skills": [
+            "Blockchain",
             "Python",
             "Azure"
         ],
@@ -5063,6 +5166,7 @@
         "skills": [
             "AWS",
             "C++",
+            "React",
             "Node.js"
         ],
         "certifications": [],
@@ -5070,7 +5174,7 @@
         "feedback": 4.4,
         "location": "South Heatherland",
         "availability": "Available",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Night",
         "compensation_type": "Fixed",
         "completed_projects": [
@@ -5097,7 +5201,7 @@
             "Machine Learning Expert"
         ],
         "projects_completed": 7,
-        "feedback": 5,
+        "feedback": 5.0,
         "location": "Williamborough",
         "availability": "Busy",
         "communication": 3.6,
@@ -5185,7 +5289,7 @@
         "feedback": 3.8,
         "location": "New Bonnieview",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Day",
         "compensation_type": "Fixed",
         "completed_projects": [
@@ -5215,7 +5319,7 @@
         "feedback": 3.6,
         "location": "Melissamouth",
         "availability": "Busy",
-        "communication": 5,
+        "communication": 5.0,
         "shift": "Night",
         "compensation_type": "Price",
         "completed_projects": [
@@ -5234,6 +5338,7 @@
         "name": "Jose",
         "skills": [
             "Machine Learning",
+            "AI",
             "GraphQL",
             "Flask"
         ],
@@ -5288,7 +5393,9 @@
         "user_id": 187,
         "name": "Ronald",
         "skills": [
+            "Blockchain",
             "Data Science",
+            "AI",
             "Python",
             "Flask"
         ],
@@ -5324,7 +5431,9 @@
         "skills": [
             "Spring Boot",
             "Python",
-            "JavaScript"
+            "Blockchain",
+            "JavaScript",
+            "React"
         ],
         "certifications": [],
         "projects_completed": 25,
@@ -5379,6 +5488,7 @@
         "user_id": 190,
         "name": "Samantha",
         "skills": [
+            "React",
             "JavaScript",
             "Flask",
             "Machine Learning"
@@ -5449,7 +5559,7 @@
         "feedback": 4.7,
         "location": "Phillipshire",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Night",
         "compensation_type": "Fixed",
         "completed_projects": [
@@ -5509,7 +5619,7 @@
             "Machine Learning Expert"
         ],
         "projects_completed": 29,
-        "feedback": 5,
+        "feedback": 5.0,
         "location": "South David",
         "availability": "Busy",
         "communication": 3.6,
@@ -5534,6 +5644,8 @@
         "user_id": 195,
         "name": "Melanie",
         "skills": [
+            "React",
+            "AI",
             "Flask",
             "Data Science"
         ],
@@ -5545,7 +5657,7 @@
         "feedback": 4.5,
         "location": "Jamiestad",
         "availability": "Busy",
-        "communication": 4,
+        "communication": 4.0,
         "shift": "Day",
         "compensation_type": "Hourly",
         "completed_projects": [
@@ -5559,6 +5671,7 @@
         "user_id": 196,
         "name": "Debra",
         "skills": [
+            "React",
             "Java",
             "Node.js"
         ],
@@ -5592,6 +5705,7 @@
         "user_id": 197,
         "name": "Krystal",
         "skills": [
+            "AI",
             "Machine Learning",
             "C++",
             "Flask"
@@ -5626,9 +5740,11 @@
         "user_id": 198,
         "name": "Mark",
         "skills": [
+            "React",
             "Node.js",
             "JavaScript",
-            "Flask"
+            "Flask",
+            "Blockchain"
         ],
         "certifications": [],
         "projects_completed": 6,

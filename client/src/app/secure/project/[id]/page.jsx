@@ -22,7 +22,7 @@ export default function ProjectDetails() {
     const fetchProject = async () => {
       if (!user) {
         toast.error("You must be logged in to view project details");
-        router.push("/login");
+        router.push("/auth/login");
         return;
       }
       
@@ -33,7 +33,10 @@ export default function ProjectDetails() {
           .eq('id', id)
           .single();
         
-        if (error) throw error;
+        if (error) {
+          console.error("Supabase error:", error);
+          throw error;
+        }
         
         if (!data) {
           toast.error("Project not found");
@@ -45,7 +48,7 @@ export default function ProjectDetails() {
         
         // Fetch creator details
         const { data: creatorData, error: creatorError } = await supabase
-          .from('profiles')
+          .from('users')
           .select('*')
           .eq('id', data.created_by)
           .single();
