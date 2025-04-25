@@ -36,19 +36,19 @@ export default function HeroSection({ userData }) {
   }, [skills]);
 
   return (
-    <div className="">
+    <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#121212] dark:to-[#1a1a1a]">
       <div className="flex justify-center text-[12px] py-5">
-        <div className=" flex gap-2 dark:shadow-md border border-green-800  dark:shadow-gray-800/50 shadow-green-800 items-center dark:border-t dark:border-gray-900 p-1.5 pr-3 rounded-full">
-          <div className="px-3 py-1 bg-green-900/70 text-white dark:text-inherit border rounded-full border-green-800 ">
+        <div className="flex gap-2 shadow-md border border-green-200 dark:border-green-800 shadow-green-200/50 dark:shadow-gray-800/50 items-center dark:border-t dark:border-gray-900 p-1.5 pr-3 rounded-full">
+          <div className="px-3 py-1 bg-green-100 dark:bg-green-900/70 text-green-800 dark:text-white border rounded-full border-green-200 dark:border-green-800">
             Hire Me
           </div>
-          <Link href={"/"} className="flex gap-2 items-center hover:opacity-70">
+          <Link href={"/"} className="flex gap-2 items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">
             Learn More
             <FaArrowRight />
           </Link>
         </div>
       </div>
-      <div className="relative min-h-[70vh] bg-[#121212] flex items-center justify-center px-4">
+      <div className="relative min-h-[70vh] flex items-center justify-center px-4">
         <div className="flex justify-center">
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 z-10">
             {/* Profile Image */}
@@ -59,7 +59,7 @@ export default function HeroSection({ userData }) {
               className="relative w-64 h-64"
             >
               <div className="w-full h-full rounded-full border-4 border-green-500 p-2">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 overflow-hidden">
                   {userData?.avatar ? (
                     <img
                       src={userData.avatar}
@@ -82,13 +82,13 @@ export default function HeroSection({ userData }) {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-center md:text-left"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
                 I'm{" "}
-                <span className="text-green-500">
+                <span className="text-green-600 dark:text-green-500">
                   {userData?.name || "Michael Anderson"}
                 </span>
               </h1>
-              <p className="text-gray-400 text-md md:text-md max-w-2xl mb-8">
+              <p className="text-gray-600 dark:text-gray-400 text-md md:text-md max-w-2xl mb-8">
                 {userData?.bio ||
                   "I write code not merely to execute tasks, but to create meaningful experiences. Every function I craft is a solution to a challenge; every feature I build tells a story of innovation and intent. To me, development isn't just about syntax and logic—it's about empathy, design, and purpose. Through each line of code, I shape digital experiences that aim to inspire, empower, and impact lives. This is my way of contributing to the future—one project, one problem, one breakthrough at a time."}
               </p>
@@ -102,9 +102,9 @@ export default function HeroSection({ userData }) {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center gap-4">
-        <div className="text-gray-400 flex items-center gap-5">
-          <span className="text-white font-semibold">Skilled in: </span>
+      <div className="flex justify-center items-center gap-4 pb-8">
+        <div className="text-gray-600 dark:text-gray-400 flex items-center gap-5">
+          <span className="text-gray-800 dark:text-white font-semibold">Skilled in: </span>
           <div className="inline-flex items-center gap-2 pt-1">
             <div className="relative h-8 overflow-hidden min-w-[150px]">
               {skills.map((skill, index) => (
@@ -119,7 +119,7 @@ export default function HeroSection({ userData }) {
                   transition={{ duration: 0.5 }}
                   className="absolute left-0 top-0 flex items-center gap-2 whitespace-nowrap"
                 >
-                  <span className="text-green-500">
+                  <span className="text-green-600 dark:text-green-500">
                     {getSkillIcon(skill)} {skill}
                   </span>
                 </motion.span>
