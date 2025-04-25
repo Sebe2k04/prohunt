@@ -29,13 +29,13 @@ const UserNavbar = () => {
             </div> */}
 
           <Link
-            href={""}
+            href={"/coming-soon"}
             className="dark:hover:text-white hover:text-black duration-100"
           >
             Docs
           </Link>
           <Link
-            href={""}
+            href={"/coming-soon"}
             className="dark:hover:text-white hover:text-black duration-100"
           >
             Notifications
@@ -62,6 +62,12 @@ const UserNavbar = () => {
             >
                 Project Management
             </Link>
+            <Link
+              href={"/secure/profile"}
+              className="dark:hover:text-white hover:text-black duration-100"
+            >
+              Profile
+            </Link>
           </div>
           <div className="grid gap-3 text-sm pt-3">
             <h1 className="dark:text-gray-800 text-gray-500">
@@ -69,25 +75,25 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={"/"}
+              href={"/secure/project"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               All Projects
             </Link>
             <Link
-              href={""}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Active Projects
             </Link>
             <Link
-              href={""}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Assigned Tasks
             </Link>
             <Link
-              href={""}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Teams
@@ -99,7 +105,7 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={"/secure/portfolio/templates"}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Templates
@@ -111,7 +117,7 @@ const UserNavbar = () => {
               My Portfolio
             </Link>
             <Link
-              href={"/secure/integrations"}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Integrations
@@ -123,19 +129,19 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={"/secure/interactions"}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Recent Interactions
             </Link>
             <Link
-              href={"/secure/preferences"}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Account Preferences
             </Link>
             <Link
-              href={"/secure/activity"}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Profile Activity
@@ -147,7 +153,7 @@ const UserNavbar = () => {
             </h1>
 
             <Link
-              href={"/secure/settings"}
+              href={"/coming-soon"}
               className="dark:hover:text-white hover:text-black duration-100"
             >
               Settings
@@ -167,6 +173,7 @@ const UserNavbar = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
